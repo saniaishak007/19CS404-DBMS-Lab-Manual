@@ -105,123 +105,217 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+Create a table named ProjectAssignments with the following constraints:
 
+AssignmentID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+ProjectID as INTEGER should be a foreign key referencing Projects(ProjectID).
+AssignmentDate as DATE should be NOT NULL.
 ```sql
--- Paste your SQL code below for Question 1
+CREATE TABLE ProjectAssignments
+(
+    AssignmentID INTEGER PRIMARY KEY,
+    EmployeeID INTEGER,
+    ProjectID INTEGER,
+    AssignmentDate DATE NOT NULL,
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+    FOREIGN KEY (ProjectID) REFERENCES Projects(ProjectID)
+);
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1201" height="366" alt="image" src="https://github.com/user-attachments/assets/5a0bc253-3038-409d-b882-bcc317512014" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Create a table named Locations with the following columns:
+
+LocationID as INTEGER
+LocationName as TEXT
+Address as TEXT
 
 ```sql
--- Paste your SQL code below for Question 2
+CREATE TABLE Locations
+(
+LocationID INTEGER,LocationName TEXT,Address TEXT
+);
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1177" height="360" alt="image" src="https://github.com/user-attachments/assets/74d62b47-cc71-479e-b922-0b5bb533adff" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Create a table named Employees with the following constraints:
+
+EmployeeID should be the primary key.
+FirstName and LastName should be NOT NULL.
+Email should be unique.
+Salary should be greater than 0.
+DepartmentID should be a foreign key referencing the Departments table.
 
 ```sql
--- Paste your SQL code below for Question 3
+CREATE TABLE Employees
+(
+EmployeeID INTEGER PRIMARY KEY,
+FirstName TEXT NOT NULL,
+LastName TEXT NOT NULL,
+Email TEXT UNIQUE NOT NULL,
+Salary INTEGER CHECK(Salary>0),
+DepartmentID INTEGER,
+FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID)
+);
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1038" height="297" alt="image" src="https://github.com/user-attachments/assets/db8c2aa8-3dc5-434c-bca5-d1aa045c92a7" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Insert all books from Out_of_print_books into Books
+
+Table attributes are ISBN, Title, Author, Publisher, YearPublished
 
 ```sql
--- Paste your SQL code below for Question 4
+INSERT INTO Books(ISBN, Title, Author, Publisher, YearPublished)SELECT * FROM Out_of_print_books 
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1208" height="335" alt="image" src="https://github.com/user-attachments/assets/6ef4ab16-3ca9-4e99-a432-127fa4667faa" />
 
 **Question 5**
 ---
--- Paste Question 5 here
+Create a table named Bonuses with the following constraints:
+BonusID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+BonusAmount as REAL should be greater than 0.
+BonusDate as DATE.
+Reason as TEXT should not be NULL.
 
 ```sql
--- Paste your SQL code below for Question 5
+CREATE TABLE Bonuses(
+BonusID INTEGER PRIMARY KEY,
+EmployeeID INTEGER,
+BonusAmount REAL CHECK(BonusAmount>0),
+BonusDate DATE,
+Reason TEXT NOT NULL,
+FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+);
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1200" height="323" alt="image" src="https://github.com/user-attachments/assets/fe610550-782c-465f-9798-9e4eb1b077a3" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query to Add a new column State as text in the Student_details table.
+```
+Sample table: Student_details
 
+ cid              name             type   notnull     dflt_value  pk
+---------------  ---------------  -----  ----------  ----------  ----------
+0                RollNo           int    0                       1
+1                Name             VARCH  1                       0
+2                Gender           TEXT   1                       0
+3                Subject          VARCH  0                       0
+4                MARKS            INT (  0                       0
+```
 ```sql
--- Paste your SQL code below for Question 6
+ALTER TABLE Student_details 
+ADD COLUMN State TEXT;
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1206" height="443" alt="image" src="https://github.com/user-attachments/assets/5118eadc-7ca1-47e4-8e9b-abe3bfbf8521" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL query to Add a new column Country as text in the Student_details table.
+```
+Sample table: Student_details
 
+ cid              name             type   notnull     dflt_value  pk
+---------------  ---------------  -----  ----------  ----------  ----------
+0                RollNo           int    0                       1
+1                Name             VARCH  1                       0
+2                Gender           TEXT   1                       0
+3                Subject          VARCH  0                       0
+4                MARKS            INT (  0                       0
+```
 ```sql
--- Paste your SQL code below for Question 7
+ALTER TABLE Student_details 
+ADD COLUMN Country TEXT;
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1210" height="397" alt="image" src="https://github.com/user-attachments/assets/fb0d0716-fdad-4d36-8da9-6282b7d43890" />
 
 **Question 8**
 ---
--- Paste Question 8 here
+Insert a book with ISBN 978-1234567890, Title Data Science Essentials, Author Jane Doe, Publisher TechBooks, and Year 2024 into the Books table.
 
 ```sql
--- Paste your SQL code below for Question 8
+INSERT into Books(ISBN,Title,Author,Publisher,Year)values('978-1234567890','Data Science Essentials','Jane Doe','TechBooks',2024);
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1186" height="209" alt="image" src="https://github.com/user-attachments/assets/94670ca1-e45e-420c-a93a-0ae4fc918ddf" />
 
 **Question 9**
 ---
--- Paste Question 9 here
-
+In the Books table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
+```
+ISBN             Title                      Author           Publisher   Year
+---------------  -------------------------  ---------------  ----------  ----------
+978-1234567890   Introduction to AI         John Doe
+978-9876543210   Deep Learning              Jane Doe         TechPress   2022
+978-1122334455   Cybersecurity Essentials   Alice Smith                  2021
+```
 ```sql
--- Paste your SQL code below for Question 9
+INSERT into Books(ISBN,Title,Author)values('978-1234567890','Introduction to AI','John Doe'); 
+INSERT into Books(ISBN,Title,Author,Publisher,Year)values('978-9876543210','Deep Learning','Jane Doe','TechPress',2022); 
+INSERT into Books(ISBN,Title,Author,Year)values('978-1122334455','Cybersecurity Essentials','Alice Smith',2021); 
+
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1196" height="296" alt="image" src="https://github.com/user-attachments/assets/a8f86ff9-800d-44d1-b1fc-1471a49a690c" />
 
 **Question 10**
 ---
--- Paste Question 10 here
+Create a table named Products with the following constraints:
 
+ProductID should be the primary key.
+ProductName should be NOT NULL.
+Price is of real datatype and should be greater than 0.
+Stock is of integer datatype and should be greater than or equal to 0.
 ```sql
--- Paste your SQL code below for Question 10
+CREATE TABLE Products(
+ProductID INTEGER PRIMARY KEY,
+ProductName TEXT NOT NULL,
+Price REAL CHECK (Price>0),
+Stock INTEGER CHECK (Stock>=0)
+
+);
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1184" height="258" alt="image" src="https://github.com/user-attachments/assets/d157a415-3eca-42cd-aa79-e507b00cf77c" />
 
 
 ## RESULT
